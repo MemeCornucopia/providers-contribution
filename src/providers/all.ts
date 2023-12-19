@@ -17,6 +17,8 @@ import { smashyStreamDScraper } from './embeds/smashystream/dued';
 import { smashyStreamFScraper } from './embeds/smashystream/video1';
 import { showBoxScraper } from './sources/showbox';
 import { smashyStreamScraper } from './sources/smashystream';
+import { vidplayScraper } from './embeds/vidplay';
+import { vidsrcScraper } from './sources/vidsrc';
 
 export function gatherAllSources(): Array<Sourcerer> {
   // all sources are gathered here
@@ -30,6 +32,7 @@ export function gatherAllSources(): Array<Sourcerer> {
     lookmovieScraper,
     showBoxScraper,
     smashyStreamScraper,
+    vidsrcScraper,
   ];
 }
 
@@ -44,5 +47,6 @@ export function gatherAllEmbeds(): Array<Embed> {
     mixdropScraper,
     smashyStreamFScraper,
     smashyStreamDScraper,
+    vidplayScraper,
   ];
 }
