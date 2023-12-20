@@ -19,7 +19,7 @@ interface StreamRes {
 }
 
 async function getFutoken(ctx: EmbedScrapeContext, key: string, url: string): Promise<string> {
-  const response = await ctx.fetcher<string>('https://vidplay.online/futoken', { headers: { Referer: url } });
+  const response = await ctx.fetcher<string>('https://vidplay.site/futoken', { headers: { Referer: url } });
   const match = response.match(/var\s+k\s*=\s*'([^']+)'/);
   if (!match || match.length < 2 || match[1] == null) {
     throw new Error('Failed to extract fuKey from the response');
@@ -42,20 +42,19 @@ async function encodeId(ctx: EmbedScrapeContext, id: string): Promise<string> {
   return encodedBase64.replace('/', '_');
 }
 
-export const vidplayScraper = makeEmbed({
-  id: 'vidplay',
-  name: 'Vidplay',
-  rank: 355,
+export const filemoonScraper = makeEmbed({
+  id: 'filemoon',
+  name: 'Filemoon',
+  rank: 356,
   async scrape(ctx: EmbedScrapeContext) {
     const id = new URL(ctx.url).pathname.split('/e/')[1];
     const key = await encodeId(ctx, id);
     const data = await getFutoken(ctx, key, ctx.url);
 
-    const subtitleLink: string = new URL(ctx.url).searchParams.get('sub.info') ?? '';
+    const subtitleLink: string = new URL(ctx.url).searchParams.get('sub_info') ?? '';
     const subtitles = await ctx.proxiedFetcher<SubtitleRes>(decodeURIComponent(subtitleLink));
-    console.log(`\nhttps://vidplay.online/mediainfo/${data}?${ctx.url.split('?')[1]}&autostart=true\n`);
     const response = await ctx.proxiedFetcher<StreamRes>(
-      `https://vidplay.online/mediainfo/${data}?${ctx.url.split('?')[1]}&autostart=true`,
+      `https://vidplay.site/mediainfo/${data}?${ctx.url.split('?')[1]}&autostart=true`,
       {
         headers: {
           Referer: ctx.url,
@@ -86,7 +85,6 @@ export const vidplayScraper = makeEmbed({
       });
     });
 
-    console.log(result);
     return {
       stream: {
         type: 'hls',

@@ -191,6 +191,7 @@ async function runScraper(providers: ProviderControls, source: MetaOutput, optio
     } catch (error) {
       let message = 'Unknown error';
       if (error instanceof Error) {
+        logDeepObject(error);
         message = error.message;
       }
 

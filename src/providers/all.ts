@@ -13,12 +13,13 @@ import { remotestreamScraper } from '@/providers/sources/remotestream';
 import { superStreamScraper } from '@/providers/sources/superstream/index';
 import { zoechipScraper } from '@/providers/sources/zoechip';
 
+import { filemoonScraper } from './embeds/filemoon';
 import { smashyStreamDScraper } from './embeds/smashystream/dued';
 import { smashyStreamFScraper } from './embeds/smashystream/video1';
+import { vidplayScraper } from './embeds/vidplay';
 import { showBoxScraper } from './sources/showbox';
 import { smashyStreamScraper } from './sources/smashystream';
-import { vidplayScraper } from './embeds/vidplay';
-import { vidsrcScraper } from './sources/vidsrc';
+import { vidsrctoScraper } from './sources/vidsrcto';
 
 export function gatherAllSources(): Array<Sourcerer> {
   // all sources are gathered here
@@ -32,7 +33,7 @@ export function gatherAllSources(): Array<Sourcerer> {
     lookmovieScraper,
     showBoxScraper,
     smashyStreamScraper,
-    vidsrcScraper,
+    vidsrctoScraper,
   ];
 }
 
@@ -48,5 +49,6 @@ export function gatherAllEmbeds(): Array<Embed> {
     smashyStreamFScraper,
     smashyStreamDScraper,
     vidplayScraper,
+    filemoonScraper,
   ];
 }

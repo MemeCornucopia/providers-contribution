@@ -1,7 +1,7 @@
 /* eslint-disable no-bitwise */
 import { decode } from 'html-entities';
 
-export const vidsrcBase = 'https://vidsrc.to';
+export const vidSrcToBase = 'https://vidsrc.to';
 
 export function keyPermutation(key: string, data: any): string {
   const state: number[] = Array.from(Array(256).keys());
@@ -69,3 +69,10 @@ export function decryptSourceUrl(sourceUrl: string) {
 
   return decode(decodedText);
 }
+
+export type SubtitleRes = {
+  title: string;
+  kind: string;
+  label: string;
+  file: string;
+}[];
